@@ -30,7 +30,7 @@
 #include <linux/kernel.h>
 #include <linux/sched.h>
 
-asmlinkage long inho_syscall(void)
+asmlinkage long sys_inho_syscall(void)
 {
 	printk("<0> (New Syscall by inhoinno)Hello Linux, I'm in Kernel -Inho- +_+ ")
 	
