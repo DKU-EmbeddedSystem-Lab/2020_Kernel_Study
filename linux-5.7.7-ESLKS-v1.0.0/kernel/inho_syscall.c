@@ -32,7 +32,7 @@
 
 asmlinkage long sys_inho_syscall(void)
 {
-	printk("<0> (New Syscall by inhoinno)Hello Linux, I'm in Kernel -Inho- +_+ ")
+	printk("<0> (New Syscall by inhoinno)Hello Linux, I'm in Kernel -Inho- +_+ ");
 	
 	printk("<0> PID %d \n",current->pid);	
 	printk("<0> TGID %d \n",current->tgid);	
@@ -47,4 +47,4 @@ asmlinkage long sys_inho_syscall(void)
 	return 0;
 }
 
-EXPORT_SYMBOL_GPL(sys_newsyscall);
+EXPORT_SYMBOL_GPL(sys_inho_syscall);
