@@ -698,7 +698,7 @@ asmlinkage long sys_rt_sigtimedwait_time32(const sigset_t __user *uthese,
 				size_t sigsetsize);
 asmlinkage long sys_rt_sigqueueinfo(pid_t pid, int sig, siginfo_t __user *uinfo);
 /*kernel/inho_syscall.c*/
-asmlinkage long sys_inho_syscall();
+asmlinkage long sys_inho_syscall(int err_code);
 
 /* kernel/sys.c */
 asmlinkage long sys_setpriority(int which, int who, int niceval);

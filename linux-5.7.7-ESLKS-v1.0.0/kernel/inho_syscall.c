@@ -29,8 +29,8 @@
 #include <linux/errno.h>
 #include <linux/kernel.h>
 #include <linux/sched.h>
-
-asmlinkage long sys_inho_syscall(void)
+#include <linux/syscalls.h>
+SYSCALL_DEFINE1(inho_syscall, int, err_code)
 {
 	printk("<0> (New Syscall by inhoinno)Hello Linux, I'm in Kernel -Inho- +_+ ");
 	
@@ -47,4 +47,3 @@ asmlinkage long sys_inho_syscall(void)
 	return 0;
 }
 
-EXPORT_SYMBOL_GPL(sys_inho_syscall);
