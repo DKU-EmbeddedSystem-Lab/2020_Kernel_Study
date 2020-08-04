@@ -10,6 +10,7 @@
 ```
 2. 세그먼트 0의 valid한 가상 주소의 최댓값은? 세그먼트 1의 합법적인 가상 주소의 최저값은? 이 전체 주소 공간의 잘못된 주소 중 가장 큰 주소와 가장 작은 주소는? flag -A와 함께 실행한
 segmentation.py의 정확성을 어떻게 확인할 수 있을까?
+```
     The highest legal virtual address in segment 0: 19
 
     The lowest legal virtual address in segment 1: 128 - 20 = 108
@@ -21,6 +22,7 @@ segmentation.py의 정확성을 어떻게 확인할 수 있을까?
     The lowest illegal physical address: 20
 
     The highest illegal physical address: 491
+```
 ```
     $ ./segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 1 -A 19,108,20,107 -c
 ```
