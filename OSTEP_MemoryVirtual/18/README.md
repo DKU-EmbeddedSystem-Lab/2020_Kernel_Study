@@ -40,9 +40,6 @@ Page Table 항목이 채워지는지 알 수 있음)
 각 주소 공간에 할당된 page의 비율을 높인다면 어떤 일이 벌어지는가?
 >   valid한 page들이 더 많아질 것이다.
 
-```
-    $ ./segmentation.py -a 128 -p 512 -b 0 -l 20 -B 512 -L 20 -s 1 -A 19,108,20,107 -c
-```
 3. 몇 가지 random seed를 주고 다른 address space 매개변수를 이용해보자
 
 ```
