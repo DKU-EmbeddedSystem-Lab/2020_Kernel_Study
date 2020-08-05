@@ -8,7 +8,6 @@
 
 1. 시뮬레이터를 이용해 매개변수가 바뀜에 따라 linear page table의 크기를 계산하시오. ('-v' flag: 얼마나 많은 
 Page Table 항목이 채워지는지 알 수 있음)
-
 먼저, Address space이 커짐에 따라 linear page table 크기의 변화를 이해하기 위하여: 
 
 ```
@@ -16,7 +15,6 @@ Page Table 항목이 채워지는지 알 수 있음)
     ./paging-linear-translate.py -P 1K -a 2m -p 512m -v -n 0
     ./paging-linear-translate.py -P 1K -a 4m -p 512m -v -n 0
 ```
-
 그런 다음 page 크기가 커짐에 따라 linear page table 크기의 변화를 이해하기 위하여:
 
 ```
@@ -53,7 +51,6 @@ Page Table 항목이 채워지는지 알 수 있음)
     ./paging-linear-translate.py -P 1m -a 256m -p 512m -v -s 3
 
 ```
-
 위 조합 중 어느 것이 비현실적인가? 이유는?
 >   
 
