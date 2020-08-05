@@ -9,7 +9,6 @@
 1. 시뮬레이터를 이용해 매개변수가 바뀜에 따라 linear page table의 크기를 계산하시오. ('-v' flag: 얼마나 많은 
 Page Table 항목이 채워지는지 알 수 있음)
 먼저, Address space이 커짐에 따라 linear page table 크기의 변화를 이해하기 위하여: 
-
 ```
     ./paging-linear-translate.py -P 1K -a 1m -p 512m -v -n 0
     ./paging-linear-translate.py -P 1K -a 2m -p 512m -v -n 0
@@ -27,21 +26,18 @@ Page Table 항목이 채워지는지 알 수 있음)
 >   page table 크기 = address space / page size
 
 2. 이제 변환을 시작해보자. '-u' flag를 사용해 address space에 할당된 page 개수를 변경해 보아라.
-
 ```
     ./paging-linear-translate.py -P 1K -a 16k -p 32K -v -u 0
     ./paging-linear-translate.py -P 1K -a 16k -p 32K -v -u 25
     ./paging-linear-translate.py -P 1K -a 16k -p 32K -v -u 50
     ./paging-linear-translate.py -P 1K -a 16k -p 32K -v -u 75
     ./paging-linear-translate.py -P 1K -a 16k -p 32K -v -u 100
-
 ```
 
 각 주소 공간에 할당된 page의 비율을 높인다면 어떤 일이 벌어지는가?
 >   valid한 page들이 더 많아질 것이다.
 
 3. 몇 가지 random seed를 주고 다른 address space 매개변수를 이용해보자
-
 ```
     ./paging-linear-translate.py -P 8  -a 32   -p 1024 -v -s 1
     ./paging-linear-translate.py -P 8K -a 32k  -p 1m   -v -s 2
@@ -52,7 +48,6 @@ Page Table 항목이 채워지는지 알 수 있음)
 >   
 
 4. 다른 문제를 시험해 보기 위해 프로그램을 사용하라. 프로그램이 더 이상 작동하지 않는 제약을 찾을 수 있는가? 예를 들어, 만약 address space의 크기가 물리 메모리보다 크다면 어떤 일이 벌어지는가?
-
 ```
 $ ./paging-linear-translate.py -a 65k -v -c
 ARG address space size 65k
