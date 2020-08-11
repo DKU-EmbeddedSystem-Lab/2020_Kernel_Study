@@ -1,0 +1,103 @@
+make[1]: 디렉터리 '/home/inhoinno/2020_Kernel_Study/Ostep_CPUvirtual/lmbench-3.0-a9/results' 들어감
+
+                 L M B E N C H  3 . 0   S U M M A R Y
+                 ------------------------------------
+		 (Alpha software, do not distribute)
+
+Basic system parameters
+------------------------------------------------------------------------------
+Host                 OS Description              Mhz  tlb  cache  mem   scal
+                                                     pages line   par   load
+                                                           bytes  
+--------- ------------- ----------------------- ---- ----- ----- ------ ----
+inhoinno-   Linux 5.7.7        x86_64-linux-gnu 5113                       1
+inhoinno-   Linux 5.7.7        x86_64-linux-gnu 2506                       1
+
+Processor, Processes - times in microseconds - smaller is better
+------------------------------------------------------------------------------
+Host                 OS  Mhz null null      open slct sig  sig  fork exec sh  
+                             call  I/O stat clos TCP  inst hndl proc proc proc
+--------- ------------- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+inhoinno-   Linux 5.7.7 5113                                                  
+inhoinno-   Linux 5.7.7 2506                                                  
+
+Basic integer operations - times in nanoseconds - smaller is better
+-------------------------------------------------------------------
+Host                 OS  intgr intgr  intgr  intgr  intgr  
+                          bit   add    mul    div    mod   
+--------- ------------- ------ ------ ------ ------ ------ 
+inhoinno-   Linux 5.7.7                                   
+inhoinno-   Linux 5.7.7                                   
+
+Basic uint64 operations - times in nanoseconds - smaller is better
+------------------------------------------------------------------
+Host                 OS int64  int64  int64  int64  int64  
+                         bit    add    mul    div    mod   
+--------- ------------- ------ ------ ------ ------ ------ 
+inhoinno-   Linux 5.7.7                                   
+inhoinno-   Linux 5.7.7                                   
+
+Basic float operations - times in nanoseconds - smaller is better
+-----------------------------------------------------------------
+Host                 OS  float  float  float  float
+                         add    mul    div    bogo
+--------- ------------- ------ ------ ------ ------ 
+inhoinno-   Linux 5.7.7                            
+inhoinno-   Linux 5.7.7                            
+
+Basic double operations - times in nanoseconds - smaller is better
+------------------------------------------------------------------
+Host                 OS  double double double double
+                         add    mul    div    bogo
+--------- ------------- ------  ------ ------ ------ 
+inhoinno-   Linux 5.7.7                            
+inhoinno-   Linux 5.7.7                            
+
+Context switching - times in microseconds - smaller is better
+-------------------------------------------------------------------------
+Host                 OS  2p/0K 2p/16K 2p/64K 8p/16K 8p/64K 16p/16K 16p/64K
+                         ctxsw  ctxsw  ctxsw ctxsw  ctxsw   ctxsw   ctxsw
+--------- ------------- ------ ------ ------ ------ ------ ------- -------
+inhoinno-   Linux 5.7.7 1.1900 1.3200 1.6000 1.7200 2.3600 1.98000 2.46000
+inhoinno-   Linux 5.7.7 1.2200 1.5300 1.7200 1.9800 2.0500 2.13000 2.11000
+
+*Local* Communication latencies in microseconds - smaller is better
+---------------------------------------------------------------------
+Host                 OS 2p/0K  Pipe AF     UDP  RPC/   TCP  RPC/ TCP
+                        ctxsw       UNIX         UDP         TCP conn
+--------- ------------- ----- ----- ---- ----- ----- ----- ----- ----
+inhoinno-   Linux 5.7.7 1.190            6.070       7.489        12.
+inhoinno-   Linux 5.7.7 1.220            6.027       7.510        12.
+
+*Remote* Communication latencies in microseconds - smaller is better
+---------------------------------------------------------------------
+Host                 OS   UDP  RPC/  TCP   RPC/ TCP
+                               UDP         TCP  conn
+--------- ------------- ----- ----- ----- ----- ----
+inhoinno-   Linux 5.7.7                             
+inhoinno-   Linux 5.7.7                             
+
+File & VM system latencies in microseconds - smaller is better
+-------------------------------------------------------------------------------
+Host                 OS   0K File      10K File     Mmap    Prot   Page   100fd
+                        Create Delete Create Delete Latency Fault  Fault  selct
+--------- ------------- ------ ------ ------ ------ ------- ----- ------- -----
+inhoinno-   Linux 5.7.7 3.6923 2.5078 7.8033 3.8743  4331.0                    
+inhoinno-   Linux 5.7.7 3.5900 2.5055 7.7483 3.8689                            
+
+*Local* Communication bandwidths in MB/s - bigger is better
+-----------------------------------------------------------------------------
+Host                OS  Pipe AF    TCP  File   Mmap  Bcopy  Bcopy  Mem   Mem
+                             UNIX      reread reread (libc) (hand) read write
+--------- ------------- ---- ---- ---- ------ ------ ------ ------ ---- -----
+inhoinno-   Linux 5.7.7 6231 12.K 9927  11.5K  18.3K  13.3K 9026.1 16.K 14.1K
+inhoinno-   Linux 5.7.7 6222 11.K 9844  11.3K  16.6K  12.7K 8886.2 16.K 14.3K
+
+Memory latencies in nanoseconds - smaller is better
+    (WARNING - may not be correct, check graphs)
+------------------------------------------------------------------------------
+Host                 OS   Mhz   L1 $   L2 $    Main mem    Rand mem    Guesses
+--------- -------------   ---   ----   ----    --------    --------    -------
+inhoinno-   Linux 5.7.7  5113 0.7980 2.3940        16.8        82.2
+inhoinno-   Linux 5.7.7  2506 0.7820 2.3480        16.8        94.2
+make[1]: 디렉터리 '/home/inhoinno/2020_Kernel_Study/Ostep_CPUvirtual/lmbench-3.0-a9/results' 나감
