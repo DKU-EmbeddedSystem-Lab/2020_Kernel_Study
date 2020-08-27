@@ -31,6 +31,7 @@
 ```
 
 >   Some empty files and links in the root directory. 
+
 >   _makedir()_ and _write()_ fail. The last data block seems can't be used.
 
 
@@ -39,4 +40,5 @@
     ./vsfs.py -i 2 -n 100 -p -c -s 21
 ```
 >   All operations except _unlink()_ will fail. Only the first inode is available.
+
 >   Change to three inodes ends up with an empty directory or a small file.
