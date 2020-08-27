@@ -1,0 +1,1274 @@
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     1                          1000 mov  $1, %ax
+     2 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     2                                                   1000 mov  $1, %ax
+     3 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     3                                                                            1000 mov  $1, %ax
+     4 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     4 1001 xchg %ax, mutex
+     5 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     5                          1001 xchg %ax, mutex
+     6 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     6                                                   1001 xchg %ax, mutex
+     7 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     7                                                                            1001 xchg %ax, mutex
+     8 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     8 1002 test $0, %ax
+     9 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     9                          1002 test $0, %ax
+    10 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    10                                                   1002 test $0, %ax
+    11 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    11                                                                            1002 test $0, %ax
+    12 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    12 1003 jne  .acquire
+    13 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    13                          1003 jne  .acquire
+    14 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    14                                                   1003 jne  .acquire
+    15 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    15                                                                            1003 jne  .acquire
+    16 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    16 1004 mov  count, %ax
+    17 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    17                          1000 mov  $1, %ax
+    18 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    18                                                   1000 mov  $1, %ax
+    19 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    19                                                                            1000 mov  $1, %ax
+    20 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    20 1005 add  $1, %ax
+    21 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    21                          1001 xchg %ax, mutex
+    22 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    22                                                   1001 xchg %ax, mutex
+    23 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    23                                                                            1001 xchg %ax, mutex
+    24 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    24 1006 mov  %ax, count
+    25 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    25                          1002 test $0, %ax
+    26 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    26                                                   1002 test $0, %ax
+    27 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    27                                                                            1002 test $0, %ax
+    28 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    28 1007 mov  $0, mutex
+    29 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    29                          1003 jne  .acquire
+    30 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    30                                                   1003 jne  .acquire
+    31 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    31                                                                            1003 jne  .acquire
+    32 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    32 1008 sub  $1, %bx
+    33 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    33                          1000 mov  $1, %ax
+    34 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    34                                                   1000 mov  $1, %ax
+    35 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    35                                                                            1000 mov  $1, %ax
+    36 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    36 1009 test $0, %bx
+    37 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    37                          1001 xchg %ax, mutex
+    38 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    38                                                   1001 xchg %ax, mutex
+    39 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    39                                                                            1001 xchg %ax, mutex
+    40 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    40 1010 jgt .top
+    41 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    41                          1002 test $0, %ax
+    42 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    42                                                   1002 test $0, %ax
+    43 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    43                                                                            1002 test $0, %ax
+    44 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    44 1011 halt
+    45 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    45 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    45                                                   1003 jne  .acquire
+    46 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    46                                                                            1003 jne  .acquire
+    47 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    47                          1003 jne  .acquire
+    48 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    48                                                   1000 mov  $1, %ax
+    49 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    49                                                                            1000 mov  $1, %ax
+    50 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    50                          1004 mov  count, %ax
+    51 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    51                                                   1001 xchg %ax, mutex
+    52 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    52                                                                            1001 xchg %ax, mutex
+    53 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    53                          1005 add  $1, %ax
+    54 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    54                                                   1002 test $0, %ax
+    55 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    55                                                                            1002 test $0, %ax
+    56 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    56                          1006 mov  %ax, count
+    57 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    57                                                   1003 jne  .acquire
+    58 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    58                                                                            1003 jne  .acquire
+    59 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    59                          1007 mov  $0, mutex
+    60 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    60                                                   1000 mov  $1, %ax
+    61 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    61                                                                            1000 mov  $1, %ax
+    62 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    62                          1008 sub  $1, %bx
+    63 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    63                                                   1001 xchg %ax, mutex
+    64 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    64                                                                            1001 xchg %ax, mutex
+    65 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    65                          1009 test $0, %bx
+    66 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    66                                                   1002 test $0, %ax
+    67 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    67                                                                            1002 test $0, %ax
+    68 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    68                          1010 jgt .top
+    69 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    69                                                   1003 jne  .acquire
+    70 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    70                                                                            1003 jne  .acquire
+    71 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    71                          1011 halt
+    72 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    72 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    72                                                                            1000 mov  $1, %ax
+    73 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    73                                                   1004 mov  count, %ax
+    74 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    74                                                                            1001 xchg %ax, mutex
+    75 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    75                                                   1005 add  $1, %ax
+    76 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    76                                                                            1002 test $0, %ax
+    77 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    77                                                   1006 mov  %ax, count
+    78 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    78                                                                            1003 jne  .acquire
+    79 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    79                                                   1007 mov  $0, mutex
+    80 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    80                                                                            1000 mov  $1, %ax
+    81 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    81                                                   1008 sub  $1, %bx
+    82 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    82                                                                            1001 xchg %ax, mutex
+    83 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    83                                                   1009 test $0, %bx
+    84 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    84                                                                            1002 test $0, %ax
+    85 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    85                                                   1010 jgt .top
+    86 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    86                                                                            1003 jne  .acquire
+    87 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    87                                                   1011 halt
+    88 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    88 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    88                                                                            1004 mov  count, %ax
+    89 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    89                                                                            1005 add  $1, %ax
+    90 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    90                                                                            1006 mov  %ax, count
+    91 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    91                                                                            1007 mov  $0, mutex
+    92 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    92                                                                            1008 sub  $1, %bx
+    93 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    93                                                                            1009 test $0, %bx
+    94 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    94                                                                            1010 jgt .top
+    95 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    95                                                                            1011 halt
+
+STATS:: Instructions    96
+STATS:: Emulation Rate  58.61 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     2                          1000 mov  $1, %ax
+     3                          1001 xchg %ax, mutex
+     4 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     4                                                   1000 mov  $1, %ax
+     5                                                   1001 xchg %ax, mutex
+     6 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     6                                                                            1000 mov  $1, %ax
+     7                                                                            1001 xchg %ax, mutex
+     8 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     8 1002 test $0, %ax
+     9 1003 jne  .acquire
+    10 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    10                          1002 test $0, %ax
+    11                          1003 jne  .acquire
+    12 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    12                                                   1002 test $0, %ax
+    13                                                   1003 jne  .acquire
+    14 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    14                                                                            1002 test $0, %ax
+    15                                                                            1003 jne  .acquire
+    16 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    16 1004 mov  count, %ax
+    17 1005 add  $1, %ax
+    18 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    18                          1000 mov  $1, %ax
+    19                          1001 xchg %ax, mutex
+    20 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    20                                                   1000 mov  $1, %ax
+    21                                                   1001 xchg %ax, mutex
+    22 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    22                                                                            1000 mov  $1, %ax
+    23                                                                            1001 xchg %ax, mutex
+    24 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    24 1006 mov  %ax, count
+    25 1007 mov  $0, mutex
+    26 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    26                          1002 test $0, %ax
+    27                          1003 jne  .acquire
+    28 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    28                                                   1002 test $0, %ax
+    29                                                   1003 jne  .acquire
+    30 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    30                                                                            1002 test $0, %ax
+    31                                                                            1003 jne  .acquire
+    32 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    32 1008 sub  $1, %bx
+    33 1009 test $0, %bx
+    34 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    34                          1000 mov  $1, %ax
+    35                          1001 xchg %ax, mutex
+    36 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    36                                                   1000 mov  $1, %ax
+    37                                                   1001 xchg %ax, mutex
+    38 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    38                                                                            1000 mov  $1, %ax
+    39                                                                            1001 xchg %ax, mutex
+    40 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    40 1010 jgt .top
+    41 1011 halt
+    42 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    42 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    42                                                   1002 test $0, %ax
+    43                                                   1003 jne  .acquire
+    44 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    44                                                                            1002 test $0, %ax
+    45                                                                            1003 jne  .acquire
+    46 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    46                          1002 test $0, %ax
+    47                          1003 jne  .acquire
+    48 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    48                                                   1000 mov  $1, %ax
+    49                                                   1001 xchg %ax, mutex
+    50 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    50                                                                            1000 mov  $1, %ax
+    51                                                                            1001 xchg %ax, mutex
+    52 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    52                          1004 mov  count, %ax
+    53                          1005 add  $1, %ax
+    54 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    54                                                   1002 test $0, %ax
+    55                                                   1003 jne  .acquire
+    56 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    56                                                                            1002 test $0, %ax
+    57                                                                            1003 jne  .acquire
+    58 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    58                          1006 mov  %ax, count
+    59                          1007 mov  $0, mutex
+    60 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    60                                                   1000 mov  $1, %ax
+    61                                                   1001 xchg %ax, mutex
+    62 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    62                                                                            1000 mov  $1, %ax
+    63                                                                            1001 xchg %ax, mutex
+    64 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    64                          1008 sub  $1, %bx
+    65                          1009 test $0, %bx
+    66 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    66                                                   1002 test $0, %ax
+    67                                                   1003 jne  .acquire
+    68 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    68                                                                            1002 test $0, %ax
+    69                                                                            1003 jne  .acquire
+    70 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    70                          1010 jgt .top
+    71                          1011 halt
+    72 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    72 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    72                                                                            1000 mov  $1, %ax
+    73                                                                            1001 xchg %ax, mutex
+    74 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    74                                                   1004 mov  count, %ax
+    75                                                   1005 add  $1, %ax
+    76 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    76                                                                            1002 test $0, %ax
+    77                                                                            1003 jne  .acquire
+    78 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    78                                                   1006 mov  %ax, count
+    79                                                   1007 mov  $0, mutex
+    80 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    80                                                                            1000 mov  $1, %ax
+    81                                                                            1001 xchg %ax, mutex
+    82 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    82                                                   1008 sub  $1, %bx
+    83                                                   1009 test $0, %bx
+    84 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    84                                                                            1002 test $0, %ax
+    85                                                                            1003 jne  .acquire
+    86 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    86                                                   1010 jgt .top
+    87                                                   1011 halt
+    88 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    88 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    88                                                                            1004 mov  count, %ax
+    89                                                                            1005 add  $1, %ax
+    90 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    90                                                                            1006 mov  %ax, count
+    91                                                                            1007 mov  $0, mutex
+    92 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    92                                                                            1008 sub  $1, %bx
+    93                                                                            1009 test $0, %bx
+    94 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    94                                                                            1010 jgt .top
+    95                                                                            1011 halt
+
+STATS:: Instructions    96
+STATS:: Emulation Rate  78.37 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     3                          1000 mov  $1, %ax
+     4                          1001 xchg %ax, mutex
+     5                          1002 test $0, %ax
+     6 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     6                                                   1000 mov  $1, %ax
+     7                                                   1001 xchg %ax, mutex
+     8                                                   1002 test $0, %ax
+     9 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     9                                                                            1000 mov  $1, %ax
+    10                                                                            1001 xchg %ax, mutex
+    11                                                                            1002 test $0, %ax
+    12 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    12 1003 jne  .acquire
+    13 1004 mov  count, %ax
+    14 1005 add  $1, %ax
+    15 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    15                          1003 jne  .acquire
+    16                          1000 mov  $1, %ax
+    17                          1001 xchg %ax, mutex
+    18 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    18                                                   1003 jne  .acquire
+    19                                                   1000 mov  $1, %ax
+    20                                                   1001 xchg %ax, mutex
+    21 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    21                                                                            1003 jne  .acquire
+    22                                                                            1000 mov  $1, %ax
+    23                                                                            1001 xchg %ax, mutex
+    24 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    24 1006 mov  %ax, count
+    25 1007 mov  $0, mutex
+    26 1008 sub  $1, %bx
+    27 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    27                          1002 test $0, %ax
+    28                          1003 jne  .acquire
+    29                          1000 mov  $1, %ax
+    30 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    30                                                   1002 test $0, %ax
+    31                                                   1003 jne  .acquire
+    32                                                   1000 mov  $1, %ax
+    33 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    33                                                                            1002 test $0, %ax
+    34                                                                            1003 jne  .acquire
+    35                                                                            1000 mov  $1, %ax
+    36 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    36 1009 test $0, %bx
+    37 1010 jgt .top
+    38 1011 halt
+    39 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    39 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    39                                                   1001 xchg %ax, mutex
+    40                                                   1002 test $0, %ax
+    41                                                   1003 jne  .acquire
+    42 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    42                                                                            1001 xchg %ax, mutex
+    43                                                                            1002 test $0, %ax
+    44                                                                            1003 jne  .acquire
+    45 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    45                          1001 xchg %ax, mutex
+    46                          1002 test $0, %ax
+    47                          1003 jne  .acquire
+    48 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    48                                                   1004 mov  count, %ax
+    49                                                   1005 add  $1, %ax
+    50                                                   1006 mov  %ax, count
+    51 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    51                                                                            1000 mov  $1, %ax
+    52                                                                            1001 xchg %ax, mutex
+    53                                                                            1002 test $0, %ax
+    54 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    54                          1000 mov  $1, %ax
+    55                          1001 xchg %ax, mutex
+    56                          1002 test $0, %ax
+    57 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    57                                                   1007 mov  $0, mutex
+    58                                                   1008 sub  $1, %bx
+    59                                                   1009 test $0, %bx
+    60 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    60                                                                            1003 jne  .acquire
+    61                                                                            1000 mov  $1, %ax
+    62                                                                            1001 xchg %ax, mutex
+    63 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    63                          1003 jne  .acquire
+    64                          1000 mov  $1, %ax
+    65                          1001 xchg %ax, mutex
+    66 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    66                                                   1010 jgt .top
+    67                                                   1011 halt
+    68 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    68                                                                            1002 test $0, %ax
+    69 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    69                          1002 test $0, %ax
+    70                          1003 jne  .acquire
+    71                          1000 mov  $1, %ax
+    72 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    72                                                                            1003 jne  .acquire
+    73                                                                            1004 mov  count, %ax
+    74                                                                            1005 add  $1, %ax
+    75 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    75                          1001 xchg %ax, mutex
+    76                          1002 test $0, %ax
+    77                          1003 jne  .acquire
+    78 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    78                                                                            1006 mov  %ax, count
+    79                                                                            1007 mov  $0, mutex
+    80                                                                            1008 sub  $1, %bx
+    81 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    81                          1000 mov  $1, %ax
+    82                          1001 xchg %ax, mutex
+    83                          1002 test $0, %ax
+    84 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    84                                                                            1009 test $0, %bx
+    85                                                                            1010 jgt .top
+    86                                                                            1011 halt
+    87 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    87 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    87                          1003 jne  .acquire
+    88                          1004 mov  count, %ax
+    89                          1005 add  $1, %ax
+    90 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    90                          1006 mov  %ax, count
+    91                          1007 mov  $0, mutex
+    92                          1008 sub  $1, %bx
+    93 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    93                          1009 test $0, %bx
+    94                          1010 jgt .top
+    95                          1011 halt
+
+STATS:: Instructions    96
+STATS:: Emulation Rate  89.72 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     4                          1000 mov  $1, %ax
+     5                          1001 xchg %ax, mutex
+     6                          1002 test $0, %ax
+     7                          1003 jne  .acquire
+     8 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     8                                                   1000 mov  $1, %ax
+     9                                                   1001 xchg %ax, mutex
+    10                                                   1002 test $0, %ax
+    11                                                   1003 jne  .acquire
+    12 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    12                                                                            1000 mov  $1, %ax
+    13                                                                            1001 xchg %ax, mutex
+    14                                                                            1002 test $0, %ax
+    15                                                                            1003 jne  .acquire
+    16 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    16 1004 mov  count, %ax
+    17 1005 add  $1, %ax
+    18 1006 mov  %ax, count
+    19 1007 mov  $0, mutex
+    20 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    20                          1000 mov  $1, %ax
+    21                          1001 xchg %ax, mutex
+    22                          1002 test $0, %ax
+    23                          1003 jne  .acquire
+    24 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    24                                                   1000 mov  $1, %ax
+    25                                                   1001 xchg %ax, mutex
+    26                                                   1002 test $0, %ax
+    27                                                   1003 jne  .acquire
+    28 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    28                                                                            1000 mov  $1, %ax
+    29                                                                            1001 xchg %ax, mutex
+    30                                                                            1002 test $0, %ax
+    31                                                                            1003 jne  .acquire
+    32 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    32 1008 sub  $1, %bx
+    33 1009 test $0, %bx
+    34 1010 jgt .top
+    35 1011 halt
+    36 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    36 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    36                                                   1000 mov  $1, %ax
+    37                                                   1001 xchg %ax, mutex
+    38                                                   1002 test $0, %ax
+    39                                                   1003 jne  .acquire
+    40 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    40                                                                            1000 mov  $1, %ax
+    41                                                                            1001 xchg %ax, mutex
+    42                                                                            1002 test $0, %ax
+    43                                                                            1003 jne  .acquire
+    44 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    44                          1004 mov  count, %ax
+    45                          1005 add  $1, %ax
+    46                          1006 mov  %ax, count
+    47                          1007 mov  $0, mutex
+    48 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    48                                                   1000 mov  $1, %ax
+    49                                                   1001 xchg %ax, mutex
+    50                                                   1002 test $0, %ax
+    51                                                   1003 jne  .acquire
+    52 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    52                                                                            1000 mov  $1, %ax
+    53                                                                            1001 xchg %ax, mutex
+    54                                                                            1002 test $0, %ax
+    55                                                                            1003 jne  .acquire
+    56 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    56                          1008 sub  $1, %bx
+    57                          1009 test $0, %bx
+    58                          1010 jgt .top
+    59                          1011 halt
+    60 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    60 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    60                                                                            1000 mov  $1, %ax
+    61                                                                            1001 xchg %ax, mutex
+    62                                                                            1002 test $0, %ax
+    63                                                                            1003 jne  .acquire
+    64 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    64                                                   1004 mov  count, %ax
+    65                                                   1005 add  $1, %ax
+    66                                                   1006 mov  %ax, count
+    67                                                   1007 mov  $0, mutex
+    68 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    68                                                                            1000 mov  $1, %ax
+    69                                                                            1001 xchg %ax, mutex
+    70                                                                            1002 test $0, %ax
+    71                                                                            1003 jne  .acquire
+    72 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    72                                                   1008 sub  $1, %bx
+    73                                                   1009 test $0, %bx
+    74                                                   1010 jgt .top
+    75                                                   1011 halt
+    76 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    76 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    76                                                                            1004 mov  count, %ax
+    77                                                                            1005 add  $1, %ax
+    78                                                                            1006 mov  %ax, count
+    79                                                                            1007 mov  $0, mutex
+    80 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    80                                                                            1008 sub  $1, %bx
+    81                                                                            1009 test $0, %bx
+    82                                                                            1010 jgt .top
+    83                                                                            1011 halt
+
+STATS:: Instructions    84
+STATS:: Emulation Rate  92.41 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     5                          1000 mov  $1, %ax
+     6                          1001 xchg %ax, mutex
+     7                          1002 test $0, %ax
+     8                          1003 jne  .acquire
+     9                          1000 mov  $1, %ax
+    10 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    10                                                   1000 mov  $1, %ax
+    11                                                   1001 xchg %ax, mutex
+    12                                                   1002 test $0, %ax
+    13                                                   1003 jne  .acquire
+    14                                                   1000 mov  $1, %ax
+    15 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    15                                                                            1000 mov  $1, %ax
+    16                                                                            1001 xchg %ax, mutex
+    17                                                                            1002 test $0, %ax
+    18                                                                            1003 jne  .acquire
+    19                                                                            1000 mov  $1, %ax
+    20 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    20 1005 add  $1, %ax
+    21 1006 mov  %ax, count
+    22 1007 mov  $0, mutex
+    23 1008 sub  $1, %bx
+    24 1009 test $0, %bx
+    25 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    25                          1001 xchg %ax, mutex
+    26                          1002 test $0, %ax
+    27                          1003 jne  .acquire
+    28                          1004 mov  count, %ax
+    29                          1005 add  $1, %ax
+    30 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    30                                                   1001 xchg %ax, mutex
+    31                                                   1002 test $0, %ax
+    32                                                   1003 jne  .acquire
+    33                                                   1000 mov  $1, %ax
+    34                                                   1001 xchg %ax, mutex
+    35 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    35                                                                            1001 xchg %ax, mutex
+    36                                                                            1002 test $0, %ax
+    37                                                                            1003 jne  .acquire
+    38                                                                            1000 mov  $1, %ax
+    39                                                                            1001 xchg %ax, mutex
+    40 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    40 1010 jgt .top
+    41 1011 halt
+    42 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    42                          1006 mov  %ax, count
+    43                          1007 mov  $0, mutex
+    44                          1008 sub  $1, %bx
+    45 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    45                                                   1002 test $0, %ax
+    46                                                   1003 jne  .acquire
+    47                                                   1000 mov  $1, %ax
+    48                                                   1001 xchg %ax, mutex
+    49                                                   1002 test $0, %ax
+    50 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    50                                                                            1002 test $0, %ax
+    51                                                                            1003 jne  .acquire
+    52                                                                            1000 mov  $1, %ax
+    53                                                                            1001 xchg %ax, mutex
+    54                                                                            1002 test $0, %ax
+    55 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    55                          1009 test $0, %bx
+    56                          1010 jgt .top
+    57                          1011 halt
+    58 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    58                                                   1003 jne  .acquire
+    59                                                   1004 mov  count, %ax
+    60 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    60                                                                            1003 jne  .acquire
+    61                                                                            1000 mov  $1, %ax
+    62                                                                            1001 xchg %ax, mutex
+    63                                                                            1002 test $0, %ax
+    64                                                                            1003 jne  .acquire
+    65 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    65                                                   1005 add  $1, %ax
+    66                                                   1006 mov  %ax, count
+    67                                                   1007 mov  $0, mutex
+    68                                                   1008 sub  $1, %bx
+    69                                                   1009 test $0, %bx
+    70 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    70                                                                            1000 mov  $1, %ax
+    71                                                                            1001 xchg %ax, mutex
+    72                                                                            1002 test $0, %ax
+    73                                                                            1003 jne  .acquire
+    74                                                                            1004 mov  count, %ax
+    75 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    75                                                   1010 jgt .top
+    76                                                   1011 halt
+    77 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    77                                                                            1005 add  $1, %ax
+    78                                                                            1006 mov  %ax, count
+    79                                                                            1007 mov  $0, mutex
+    80 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    80                                                                            1008 sub  $1, %bx
+    81                                                                            1009 test $0, %bx
+    82                                                                            1010 jgt .top
+    83                                                                            1011 halt
+
+STATS:: Instructions    84
+STATS:: Emulation Rate  93.75 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     6                          1000 mov  $1, %ax
+     7                          1001 xchg %ax, mutex
+     8                          1002 test $0, %ax
+     9                          1003 jne  .acquire
+    10                          1000 mov  $1, %ax
+    11                          1001 xchg %ax, mutex
+    12 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    12                                                   1000 mov  $1, %ax
+    13                                                   1001 xchg %ax, mutex
+    14                                                   1002 test $0, %ax
+    15                                                   1003 jne  .acquire
+    16                                                   1000 mov  $1, %ax
+    17                                                   1001 xchg %ax, mutex
+    18 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    18                                                                            1000 mov  $1, %ax
+    19                                                                            1001 xchg %ax, mutex
+    20                                                                            1002 test $0, %ax
+    21                                                                            1003 jne  .acquire
+    22                                                                            1000 mov  $1, %ax
+    23                                                                            1001 xchg %ax, mutex
+    24 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    24 1006 mov  %ax, count
+    25 1007 mov  $0, mutex
+    26 1008 sub  $1, %bx
+    27 1009 test $0, %bx
+    28 1010 jgt .top
+    29 1011 halt
+    30 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    30 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    30                                                   1002 test $0, %ax
+    31                                                   1003 jne  .acquire
+    32                                                   1000 mov  $1, %ax
+    33                                                   1001 xchg %ax, mutex
+    34                                                   1002 test $0, %ax
+    35                                                   1003 jne  .acquire
+    36 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    36                                                                            1002 test $0, %ax
+    37                                                                            1003 jne  .acquire
+    38                                                                            1000 mov  $1, %ax
+    39                                                                            1001 xchg %ax, mutex
+    40                                                                            1002 test $0, %ax
+    41                                                                            1003 jne  .acquire
+    42 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    42                          1002 test $0, %ax
+    43                          1003 jne  .acquire
+    44                          1000 mov  $1, %ax
+    45                          1001 xchg %ax, mutex
+    46                          1002 test $0, %ax
+    47                          1003 jne  .acquire
+    48 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    48                                                   1004 mov  count, %ax
+    49                                                   1005 add  $1, %ax
+    50                                                   1006 mov  %ax, count
+    51                                                   1007 mov  $0, mutex
+    52                                                   1008 sub  $1, %bx
+    53                                                   1009 test $0, %bx
+    54 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    54                                                                            1000 mov  $1, %ax
+    55                                                                            1001 xchg %ax, mutex
+    56                                                                            1002 test $0, %ax
+    57                                                                            1003 jne  .acquire
+    58                                                                            1004 mov  count, %ax
+    59                                                                            1005 add  $1, %ax
+    60 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    60                          1000 mov  $1, %ax
+    61                          1001 xchg %ax, mutex
+    62                          1002 test $0, %ax
+    63                          1003 jne  .acquire
+    64                          1000 mov  $1, %ax
+    65                          1001 xchg %ax, mutex
+    66 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    66                                                   1010 jgt .top
+    67                                                   1011 halt
+    68 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    68                                                                            1006 mov  %ax, count
+    69                                                                            1007 mov  $0, mutex
+    70                                                                            1008 sub  $1, %bx
+    71                                                                            1009 test $0, %bx
+    72 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    72                          1002 test $0, %ax
+    73                          1003 jne  .acquire
+    74                          1000 mov  $1, %ax
+    75                          1001 xchg %ax, mutex
+    76                          1002 test $0, %ax
+    77                          1003 jne  .acquire
+    78 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    78                                                                            1010 jgt .top
+    79                                                                            1011 halt
+    80 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    80                          1004 mov  count, %ax
+    81                          1005 add  $1, %ax
+    82                          1006 mov  %ax, count
+    83                          1007 mov  $0, mutex
+    84 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    84                          1008 sub  $1, %bx
+    85                          1009 test $0, %bx
+    86                          1010 jgt .top
+    87                          1011 halt
+
+STATS:: Instructions    88
+STATS:: Emulation Rate  102.09 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     7                          1000 mov  $1, %ax
+     8                          1001 xchg %ax, mutex
+     9                          1002 test $0, %ax
+    10                          1003 jne  .acquire
+    11                          1000 mov  $1, %ax
+    12                          1001 xchg %ax, mutex
+    13                          1002 test $0, %ax
+    14 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    14                                                   1000 mov  $1, %ax
+    15                                                   1001 xchg %ax, mutex
+    16                                                   1002 test $0, %ax
+    17                                                   1003 jne  .acquire
+    18                                                   1000 mov  $1, %ax
+    19                                                   1001 xchg %ax, mutex
+    20                                                   1002 test $0, %ax
+    21 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    21                                                                            1000 mov  $1, %ax
+    22                                                                            1001 xchg %ax, mutex
+    23                                                                            1002 test $0, %ax
+    24                                                                            1003 jne  .acquire
+    25                                                                            1000 mov  $1, %ax
+    26                                                                            1001 xchg %ax, mutex
+    27                                                                            1002 test $0, %ax
+    28 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    28 1007 mov  $0, mutex
+    29 1008 sub  $1, %bx
+    30 1009 test $0, %bx
+    31 1010 jgt .top
+    32 1011 halt
+    33 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    33                          1003 jne  .acquire
+    34                          1000 mov  $1, %ax
+    35 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    35                                                   1003 jne  .acquire
+    36                                                   1000 mov  $1, %ax
+    37                                                   1001 xchg %ax, mutex
+    38                                                   1002 test $0, %ax
+    39                                                   1003 jne  .acquire
+    40                                                   1004 mov  count, %ax
+    41                                                   1005 add  $1, %ax
+    42 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    42                                                                            1003 jne  .acquire
+    43                                                                            1000 mov  $1, %ax
+    44                                                                            1001 xchg %ax, mutex
+    45                                                                            1002 test $0, %ax
+    46                                                                            1003 jne  .acquire
+    47                                                                            1000 mov  $1, %ax
+    48                                                                            1001 xchg %ax, mutex
+    49 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    49                          1001 xchg %ax, mutex
+    50                          1002 test $0, %ax
+    51                          1003 jne  .acquire
+    52                          1000 mov  $1, %ax
+    53                          1001 xchg %ax, mutex
+    54                          1002 test $0, %ax
+    55                          1003 jne  .acquire
+    56 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    56                                                   1006 mov  %ax, count
+    57                                                   1007 mov  $0, mutex
+    58                                                   1008 sub  $1, %bx
+    59                                                   1009 test $0, %bx
+    60                                                   1010 jgt .top
+    61                                                   1011 halt
+    62 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    62                                                                            1002 test $0, %ax
+    63 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    63                          1000 mov  $1, %ax
+    64                          1001 xchg %ax, mutex
+    65                          1002 test $0, %ax
+    66                          1003 jne  .acquire
+    67                          1004 mov  count, %ax
+    68                          1005 add  $1, %ax
+    69                          1006 mov  %ax, count
+    70 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    70                                                                            1003 jne  .acquire
+    71                                                                            1000 mov  $1, %ax
+    72                                                                            1001 xchg %ax, mutex
+    73                                                                            1002 test $0, %ax
+    74                                                                            1003 jne  .acquire
+    75                                                                            1000 mov  $1, %ax
+    76                                                                            1001 xchg %ax, mutex
+    77 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    77                          1007 mov  $0, mutex
+    78                          1008 sub  $1, %bx
+    79                          1009 test $0, %bx
+    80                          1010 jgt .top
+    81                          1011 halt
+    82 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    82                                                                            1002 test $0, %ax
+    83                                                                            1003 jne  .acquire
+    84 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    84                                                                            1000 mov  $1, %ax
+    85                                                                            1001 xchg %ax, mutex
+    86                                                                            1002 test $0, %ax
+    87                                                                            1003 jne  .acquire
+    88                                                                            1004 mov  count, %ax
+    89                                                                            1005 add  $1, %ax
+    90                                                                            1006 mov  %ax, count
+    91 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    91                                                                            1007 mov  $0, mutex
+    92                                                                            1008 sub  $1, %bx
+    93                                                                            1009 test $0, %bx
+    94                                                                            1010 jgt .top
+    95                                                                            1011 halt
+
+STATS:: Instructions    96
+STATS:: Emulation Rate  101.91 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     8                          1000 mov  $1, %ax
+     9                          1001 xchg %ax, mutex
+    10                          1002 test $0, %ax
+    11                          1003 jne  .acquire
+    12                          1004 mov  count, %ax
+    13                          1005 add  $1, %ax
+    14                          1006 mov  %ax, count
+    15                          1007 mov  $0, mutex
+    16 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    16                                                   1000 mov  $1, %ax
+    17                                                   1001 xchg %ax, mutex
+    18                                                   1002 test $0, %ax
+    19                                                   1003 jne  .acquire
+    20                                                   1004 mov  count, %ax
+    21                                                   1005 add  $1, %ax
+    22                                                   1006 mov  %ax, count
+    23                                                   1007 mov  $0, mutex
+    24 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    24                                                                            1000 mov  $1, %ax
+    25                                                                            1001 xchg %ax, mutex
+    26                                                                            1002 test $0, %ax
+    27                                                                            1003 jne  .acquire
+    28                                                                            1004 mov  count, %ax
+    29                                                                            1005 add  $1, %ax
+    30                                                                            1006 mov  %ax, count
+    31                                                                            1007 mov  $0, mutex
+    32 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    32 1008 sub  $1, %bx
+    33 1009 test $0, %bx
+    34 1010 jgt .top
+    35 1011 halt
+    36 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    36                          1008 sub  $1, %bx
+    37                          1009 test $0, %bx
+    38                          1010 jgt .top
+    39                          1011 halt
+    40 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    40 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    40                                                                            1008 sub  $1, %bx
+    41                                                                            1009 test $0, %bx
+    42                                                                            1010 jgt .top
+    43                                                                            1011 halt
+    44 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    44                                                   1008 sub  $1, %bx
+    45                                                   1009 test $0, %bx
+    46                                                   1010 jgt .top
+    47                                                   1011 halt
+
+STATS:: Instructions    48
+STATS:: Emulation Rate  95.81 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 1008 sub  $1, %bx
+     9 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+     9                          1000 mov  $1, %ax
+    10                          1001 xchg %ax, mutex
+    11                          1002 test $0, %ax
+    12                          1003 jne  .acquire
+    13                          1004 mov  count, %ax
+    14                          1005 add  $1, %ax
+    15                          1006 mov  %ax, count
+    16                          1007 mov  $0, mutex
+    17                          1008 sub  $1, %bx
+    18 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    18                                                   1000 mov  $1, %ax
+    19                                                   1001 xchg %ax, mutex
+    20                                                   1002 test $0, %ax
+    21                                                   1003 jne  .acquire
+    22                                                   1004 mov  count, %ax
+    23                                                   1005 add  $1, %ax
+    24                                                   1006 mov  %ax, count
+    25                                                   1007 mov  $0, mutex
+    26                                                   1008 sub  $1, %bx
+    27 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    27                                                                            1000 mov  $1, %ax
+    28                                                                            1001 xchg %ax, mutex
+    29                                                                            1002 test $0, %ax
+    30                                                                            1003 jne  .acquire
+    31                                                                            1004 mov  count, %ax
+    32                                                                            1005 add  $1, %ax
+    33                                                                            1006 mov  %ax, count
+    34                                                                            1007 mov  $0, mutex
+    35                                                                            1008 sub  $1, %bx
+    36 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    36 1009 test $0, %bx
+    37 1010 jgt .top
+    38 1011 halt
+    39 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    39                          1009 test $0, %bx
+    40                          1010 jgt .top
+    41                          1011 halt
+    42 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    42                                                   1009 test $0, %bx
+    43                                                   1010 jgt .top
+    44                                                   1011 halt
+    45 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    45 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    45                                                                            1009 test $0, %bx
+    46                                                                            1010 jgt .top
+    47                                                                            1011 halt
+
+STATS:: Instructions    48
+STATS:: Emulation Rate  97.36 kinst/sec
+ARG seed 0
+ARG numthreads 4
+ARG program test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1                Thread 2                Thread 3         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 1008 sub  $1, %bx
+     9 1009 test $0, %bx
+    10 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    10                          1000 mov  $1, %ax
+    11                          1001 xchg %ax, mutex
+    12                          1002 test $0, %ax
+    13                          1003 jne  .acquire
+    14                          1004 mov  count, %ax
+    15                          1005 add  $1, %ax
+    16                          1006 mov  %ax, count
+    17                          1007 mov  $0, mutex
+    18                          1008 sub  $1, %bx
+    19                          1009 test $0, %bx
+    20 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    20                                                   1000 mov  $1, %ax
+    21                                                   1001 xchg %ax, mutex
+    22                                                   1002 test $0, %ax
+    23                                                   1003 jne  .acquire
+    24                                                   1004 mov  count, %ax
+    25                                                   1005 add  $1, %ax
+    26                                                   1006 mov  %ax, count
+    27                                                   1007 mov  $0, mutex
+    28                                                   1008 sub  $1, %bx
+    29                                                   1009 test $0, %bx
+    30 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    30                                                                            1000 mov  $1, %ax
+    31                                                                            1001 xchg %ax, mutex
+    32                                                                            1002 test $0, %ax
+    33                                                                            1003 jne  .acquire
+    34                                                                            1004 mov  count, %ax
+    35                                                                            1005 add  $1, %ax
+    36                                                                            1006 mov  %ax, count
+    37                                                                            1007 mov  $0, mutex
+    38                                                                            1008 sub  $1, %bx
+    39                                                                            1009 test $0, %bx
+    40 ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  ------ Interrupt ------  
+    40 1010 jgt .top
+    41 1011 halt
+    42 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    42                          1010 jgt .top
+    43                          1011 halt
+    44 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    44                                                   1010 jgt .top
+    45                                                   1011 halt
+    46 ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  ----- Halt;Switch -----  
+    46                                                                            1010 jgt .top
+    47                                                                            1011 halt
+
+STATS:: Instructions    48
+STATS:: Emulation Rate  97.36 kinst/sec

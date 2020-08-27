@@ -1,0 +1,637 @@
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 ------ Interrupt ------  ------ Interrupt ------  
+     1                          1000 mov  $1, %ax
+     2 ------ Interrupt ------  ------ Interrupt ------  
+     2 1001 xchg %ax, mutex
+     3 ------ Interrupt ------  ------ Interrupt ------  
+     3                          1001 xchg %ax, mutex
+     4 ------ Interrupt ------  ------ Interrupt ------  
+     4 1002 test $0, %ax
+     5 ------ Interrupt ------  ------ Interrupt ------  
+     5                          1002 test $0, %ax
+     6 ------ Interrupt ------  ------ Interrupt ------  
+     6 1003 jne  .acquire
+     7 ------ Interrupt ------  ------ Interrupt ------  
+     7                          1003 jne  .acquire
+     8 ------ Interrupt ------  ------ Interrupt ------  
+     8 1004 mov  count, %ax
+     9 ------ Interrupt ------  ------ Interrupt ------  
+     9                          1000 mov  $1, %ax
+    10 ------ Interrupt ------  ------ Interrupt ------  
+    10 1005 add  $1, %ax
+    11 ------ Interrupt ------  ------ Interrupt ------  
+    11                          1001 xchg %ax, mutex
+    12 ------ Interrupt ------  ------ Interrupt ------  
+    12 1006 mov  %ax, count
+    13 ------ Interrupt ------  ------ Interrupt ------  
+    13                          1002 test $0, %ax
+    14 ------ Interrupt ------  ------ Interrupt ------  
+    14 1007 mov  $0, mutex
+    15 ------ Interrupt ------  ------ Interrupt ------  
+    15                          1003 jne  .acquire
+    16 ------ Interrupt ------  ------ Interrupt ------  
+    16 1008 sub  $1, %bx
+    17 ------ Interrupt ------  ------ Interrupt ------  
+    17                          1000 mov  $1, %ax
+    18 ------ Interrupt ------  ------ Interrupt ------  
+    18 1009 test $0, %bx
+    19 ------ Interrupt ------  ------ Interrupt ------  
+    19                          1001 xchg %ax, mutex
+    20 ------ Interrupt ------  ------ Interrupt ------  
+    20 1010 jgt .top
+    21 ------ Interrupt ------  ------ Interrupt ------  
+    21                          1002 test $0, %ax
+    22 ------ Interrupt ------  ------ Interrupt ------  
+    22 1011 halt
+    23 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    23 ------ Interrupt ------  ------ Interrupt ------  
+    23                          1003 jne  .acquire
+    24 ------ Interrupt ------  ------ Interrupt ------  
+    24                          1004 mov  count, %ax
+    25 ------ Interrupt ------  ------ Interrupt ------  
+    25                          1005 add  $1, %ax
+    26 ------ Interrupt ------  ------ Interrupt ------  
+    26                          1006 mov  %ax, count
+    27 ------ Interrupt ------  ------ Interrupt ------  
+    27                          1007 mov  $0, mutex
+    28 ------ Interrupt ------  ------ Interrupt ------  
+    28                          1008 sub  $1, %bx
+    29 ------ Interrupt ------  ------ Interrupt ------  
+    29                          1009 test $0, %bx
+    30 ------ Interrupt ------  ------ Interrupt ------  
+    30                          1010 jgt .top
+    31 ------ Interrupt ------  ------ Interrupt ------  
+    31                          1011 halt
+
+STATS:: Instructions    32
+STATS:: Emulation Rate  57.35 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 ------ Interrupt ------  ------ Interrupt ------  
+     2                          1000 mov  $1, %ax
+     3                          1001 xchg %ax, mutex
+     4 ------ Interrupt ------  ------ Interrupt ------  
+     4 1002 test $0, %ax
+     5 1003 jne  .acquire
+     6 ------ Interrupt ------  ------ Interrupt ------  
+     6                          1002 test $0, %ax
+     7                          1003 jne  .acquire
+     8 ------ Interrupt ------  ------ Interrupt ------  
+     8 1004 mov  count, %ax
+     9 1005 add  $1, %ax
+    10 ------ Interrupt ------  ------ Interrupt ------  
+    10                          1000 mov  $1, %ax
+    11                          1001 xchg %ax, mutex
+    12 ------ Interrupt ------  ------ Interrupt ------  
+    12 1006 mov  %ax, count
+    13 1007 mov  $0, mutex
+    14 ------ Interrupt ------  ------ Interrupt ------  
+    14                          1002 test $0, %ax
+    15                          1003 jne  .acquire
+    16 ------ Interrupt ------  ------ Interrupt ------  
+    16 1008 sub  $1, %bx
+    17 1009 test $0, %bx
+    18 ------ Interrupt ------  ------ Interrupt ------  
+    18                          1000 mov  $1, %ax
+    19                          1001 xchg %ax, mutex
+    20 ------ Interrupt ------  ------ Interrupt ------  
+    20 1010 jgt .top
+    21 1011 halt
+    22 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    22 ------ Interrupt ------  ------ Interrupt ------  
+    22                          1002 test $0, %ax
+    23                          1003 jne  .acquire
+    24 ------ Interrupt ------  ------ Interrupt ------  
+    24                          1004 mov  count, %ax
+    25                          1005 add  $1, %ax
+    26 ------ Interrupt ------  ------ Interrupt ------  
+    26                          1006 mov  %ax, count
+    27                          1007 mov  $0, mutex
+    28 ------ Interrupt ------  ------ Interrupt ------  
+    28                          1008 sub  $1, %bx
+    29                          1009 test $0, %bx
+    30 ------ Interrupt ------  ------ Interrupt ------  
+    30                          1010 jgt .top
+    31                          1011 halt
+
+STATS:: Instructions    32
+STATS:: Emulation Rate  74.59 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 ------ Interrupt ------  ------ Interrupt ------  
+     3                          1000 mov  $1, %ax
+     4                          1001 xchg %ax, mutex
+     5                          1002 test $0, %ax
+     6 ------ Interrupt ------  ------ Interrupt ------  
+     6 1003 jne  .acquire
+     7 1004 mov  count, %ax
+     8 1005 add  $1, %ax
+     9 ------ Interrupt ------  ------ Interrupt ------  
+     9                          1003 jne  .acquire
+    10                          1000 mov  $1, %ax
+    11                          1001 xchg %ax, mutex
+    12 ------ Interrupt ------  ------ Interrupt ------  
+    12 1006 mov  %ax, count
+    13 1007 mov  $0, mutex
+    14 1008 sub  $1, %bx
+    15 ------ Interrupt ------  ------ Interrupt ------  
+    15                          1002 test $0, %ax
+    16                          1003 jne  .acquire
+    17                          1000 mov  $1, %ax
+    18 ------ Interrupt ------  ------ Interrupt ------  
+    18 1009 test $0, %bx
+    19 1010 jgt .top
+    20 1011 halt
+    21 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    21 ------ Interrupt ------  ------ Interrupt ------  
+    21                          1001 xchg %ax, mutex
+    22                          1002 test $0, %ax
+    23                          1003 jne  .acquire
+    24 ------ Interrupt ------  ------ Interrupt ------  
+    24                          1004 mov  count, %ax
+    25                          1005 add  $1, %ax
+    26                          1006 mov  %ax, count
+    27 ------ Interrupt ------  ------ Interrupt ------  
+    27                          1007 mov  $0, mutex
+    28                          1008 sub  $1, %bx
+    29                          1009 test $0, %bx
+    30 ------ Interrupt ------  ------ Interrupt ------  
+    30                          1010 jgt .top
+    31                          1011 halt
+
+STATS:: Instructions    32
+STATS:: Emulation Rate  84.21 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 ------ Interrupt ------  ------ Interrupt ------  
+     4                          1000 mov  $1, %ax
+     5                          1001 xchg %ax, mutex
+     6                          1002 test $0, %ax
+     7                          1003 jne  .acquire
+     8 ------ Interrupt ------  ------ Interrupt ------  
+     8 1004 mov  count, %ax
+     9 1005 add  $1, %ax
+    10 1006 mov  %ax, count
+    11 1007 mov  $0, mutex
+    12 ------ Interrupt ------  ------ Interrupt ------  
+    12                          1000 mov  $1, %ax
+    13                          1001 xchg %ax, mutex
+    14                          1002 test $0, %ax
+    15                          1003 jne  .acquire
+    16 ------ Interrupt ------  ------ Interrupt ------  
+    16 1008 sub  $1, %bx
+    17 1009 test $0, %bx
+    18 1010 jgt .top
+    19 1011 halt
+    20 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    20 ------ Interrupt ------  ------ Interrupt ------  
+    20                          1004 mov  count, %ax
+    21                          1005 add  $1, %ax
+    22                          1006 mov  %ax, count
+    23                          1007 mov  $0, mutex
+    24 ------ Interrupt ------  ------ Interrupt ------  
+    24                          1008 sub  $1, %bx
+    25                          1009 test $0, %bx
+    26                          1010 jgt .top
+    27                          1011 halt
+
+STATS:: Instructions    28
+STATS:: Emulation Rate  86.42 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 ------ Interrupt ------  ------ Interrupt ------  
+     5                          1000 mov  $1, %ax
+     6                          1001 xchg %ax, mutex
+     7                          1002 test $0, %ax
+     8                          1003 jne  .acquire
+     9                          1000 mov  $1, %ax
+    10 ------ Interrupt ------  ------ Interrupt ------  
+    10 1005 add  $1, %ax
+    11 1006 mov  %ax, count
+    12 1007 mov  $0, mutex
+    13 1008 sub  $1, %bx
+    14 1009 test $0, %bx
+    15 ------ Interrupt ------  ------ Interrupt ------  
+    15                          1001 xchg %ax, mutex
+    16                          1002 test $0, %ax
+    17                          1003 jne  .acquire
+    18                          1004 mov  count, %ax
+    19                          1005 add  $1, %ax
+    20 ------ Interrupt ------  ------ Interrupt ------  
+    20 1010 jgt .top
+    21 1011 halt
+    22 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    22                          1006 mov  %ax, count
+    23                          1007 mov  $0, mutex
+    24                          1008 sub  $1, %bx
+    25 ------ Interrupt ------  ------ Interrupt ------  
+    25                          1009 test $0, %bx
+    26                          1010 jgt .top
+    27                          1011 halt
+
+STATS:: Instructions    28
+STATS:: Emulation Rate  88.61 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 ------ Interrupt ------  ------ Interrupt ------  
+     6                          1000 mov  $1, %ax
+     7                          1001 xchg %ax, mutex
+     8                          1002 test $0, %ax
+     9                          1003 jne  .acquire
+    10                          1000 mov  $1, %ax
+    11                          1001 xchg %ax, mutex
+    12 ------ Interrupt ------  ------ Interrupt ------  
+    12 1006 mov  %ax, count
+    13 1007 mov  $0, mutex
+    14 1008 sub  $1, %bx
+    15 1009 test $0, %bx
+    16 1010 jgt .top
+    17 1011 halt
+    18 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    18 ------ Interrupt ------  ------ Interrupt ------  
+    18                          1002 test $0, %ax
+    19                          1003 jne  .acquire
+    20                          1000 mov  $1, %ax
+    21                          1001 xchg %ax, mutex
+    22                          1002 test $0, %ax
+    23                          1003 jne  .acquire
+    24 ------ Interrupt ------  ------ Interrupt ------  
+    24                          1004 mov  count, %ax
+    25                          1005 add  $1, %ax
+    26                          1006 mov  %ax, count
+    27                          1007 mov  $0, mutex
+    28                          1008 sub  $1, %bx
+    29                          1009 test $0, %bx
+    30 ------ Interrupt ------  ------ Interrupt ------  
+    30                          1010 jgt .top
+    31                          1011 halt
+
+STATS:: Instructions    32
+STATS:: Emulation Rate  92.75 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 ------ Interrupt ------  ------ Interrupt ------  
+     7                          1000 mov  $1, %ax
+     8                          1001 xchg %ax, mutex
+     9                          1002 test $0, %ax
+    10                          1003 jne  .acquire
+    11                          1000 mov  $1, %ax
+    12                          1001 xchg %ax, mutex
+    13                          1002 test $0, %ax
+    14 ------ Interrupt ------  ------ Interrupt ------  
+    14 1007 mov  $0, mutex
+    15 1008 sub  $1, %bx
+    16 1009 test $0, %bx
+    17 1010 jgt .top
+    18 1011 halt
+    19 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    19                          1003 jne  .acquire
+    20                          1000 mov  $1, %ax
+    21 ------ Interrupt ------  ------ Interrupt ------  
+    21                          1001 xchg %ax, mutex
+    22                          1002 test $0, %ax
+    23                          1003 jne  .acquire
+    24                          1004 mov  count, %ax
+    25                          1005 add  $1, %ax
+    26                          1006 mov  %ax, count
+    27                          1007 mov  $0, mutex
+    28 ------ Interrupt ------  ------ Interrupt ------  
+    28                          1008 sub  $1, %bx
+    29                          1009 test $0, %bx
+    30                          1010 jgt .top
+    31                          1011 halt
+
+STATS:: Instructions    32
+STATS:: Emulation Rate  96.39 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 ------ Interrupt ------  ------ Interrupt ------  
+     8                          1000 mov  $1, %ax
+     9                          1001 xchg %ax, mutex
+    10                          1002 test $0, %ax
+    11                          1003 jne  .acquire
+    12                          1004 mov  count, %ax
+    13                          1005 add  $1, %ax
+    14                          1006 mov  %ax, count
+    15                          1007 mov  $0, mutex
+    16 ------ Interrupt ------  ------ Interrupt ------  
+    16 1008 sub  $1, %bx
+    17 1009 test $0, %bx
+    18 1010 jgt .top
+    19 1011 halt
+    20 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    20                          1008 sub  $1, %bx
+    21                          1009 test $0, %bx
+    22                          1010 jgt .top
+    23                          1011 halt
+
+STATS:: Instructions    24
+STATS:: Emulation Rate  93.75 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 1008 sub  $1, %bx
+     9 ------ Interrupt ------  ------ Interrupt ------  
+     9                          1000 mov  $1, %ax
+    10                          1001 xchg %ax, mutex
+    11                          1002 test $0, %ax
+    12                          1003 jne  .acquire
+    13                          1004 mov  count, %ax
+    14                          1005 add  $1, %ax
+    15                          1006 mov  %ax, count
+    16                          1007 mov  $0, mutex
+    17                          1008 sub  $1, %bx
+    18 ------ Interrupt ------  ------ Interrupt ------  
+    18 1009 test $0, %bx
+    19 1010 jgt .top
+    20 1011 halt
+    21 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    21                          1009 test $0, %bx
+    22                          1010 jgt .top
+    23                          1011 halt
+
+STATS:: Instructions    24
+STATS:: Emulation Rate  93.75 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 1008 sub  $1, %bx
+     9 1009 test $0, %bx
+    10 ------ Interrupt ------  ------ Interrupt ------  
+    10                          1000 mov  $1, %ax
+    11                          1001 xchg %ax, mutex
+    12                          1002 test $0, %ax
+    13                          1003 jne  .acquire
+    14                          1004 mov  count, %ax
+    15                          1005 add  $1, %ax
+    16                          1006 mov  %ax, count
+    17                          1007 mov  $0, mutex
+    18                          1008 sub  $1, %bx
+    19                          1009 test $0, %bx
+    20 ------ Interrupt ------  ------ Interrupt ------  
+    20 1010 jgt .top
+    21 1011 halt
+    22 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    22                          1010 jgt .top
+    23                          1011 halt
+
+STATS:: Instructions    24
+STATS:: Emulation Rate  91.60 kinst/sec
+ARG seed 0
+ARG numthreads 2
+ARG program test-and-set.s
+ARG interrupt frequency 20
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace 
+ARG regtrace 
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+
+
+icount        Thread 0                Thread 1         
+
+     0      0 1000 mov  $1, %ax
+     1 1001 xchg %ax, mutex
+     2 1002 test $0, %ax
+     3 1003 jne  .acquire
+     4 1004 mov  count, %ax
+     5 1005 add  $1, %ax
+     6 1006 mov  %ax, count
+     7 1007 mov  $0, mutex
+     8 1008 sub  $1, %bx
+     9 1009 test $0, %bx
+    10 1010 jgt .top
+    11 1011 halt
+    12 ----- Halt;Switch -----  ----- Halt;Switch -----  
+    12                          1000 mov  $1, %ax
+    13                          1001 xchg %ax, mutex
+    14                          1002 test $0, %ax
+    15                          1003 jne  .acquire
+    16                          1004 mov  count, %ax
+    17                          1005 add  $1, %ax
+    18                          1006 mov  %ax, count
+    19                          1007 mov  $0, mutex
+    20 ------ Interrupt ------  ------ Interrupt ------  
+    20                          1008 sub  $1, %bx
+    21                          1009 test $0, %bx
+    22                          1010 jgt .top
+    23                          1011 halt
+
+STATS:: Instructions    24
+STATS:: Emulation Rate  94.86 kinst/sec

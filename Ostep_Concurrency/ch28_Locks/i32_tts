@@ -1,0 +1,816 @@
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  38.82 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  37.47 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  38.50 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  38.04 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 1
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  38.40 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  50.71 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  51.01 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  51.17 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  51.28 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 2
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  51.59 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  58.16 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  56.69 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  55.83 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  56.07 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 3
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5440
+STATS:: Emulation Rate  57.87 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5395
+STATS:: Emulation Rate  62.39 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5395
+STATS:: Emulation Rate  63.39 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5395
+STATS:: Emulation Rate  60.49 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5395
+STATS:: Emulation Rate  60.92 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 4
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5395
+STATS:: Emulation Rate  58.24 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5544
+STATS:: Emulation Rate  66.18 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5544
+STATS:: Emulation Rate  63.35 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5544
+STATS:: Emulation Rate  63.69 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5544
+STATS:: Emulation Rate  63.69 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 5
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5544
+STATS:: Emulation Rate  62.54 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4896
+STATS:: Emulation Rate  66.66 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4896
+STATS:: Emulation Rate  64.58 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4896
+STATS:: Emulation Rate  67.78 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4896
+STATS:: Emulation Rate  68.12 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 6
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4896
+STATS:: Emulation Rate  67.07 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5553
+STATS:: Emulation Rate  69.94 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5553
+STATS:: Emulation Rate  65.95 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5553
+STATS:: Emulation Rate  65.54 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5553
+STATS:: Emulation Rate  66.36 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5553
+STATS:: Emulation Rate  67.19 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4482
+STATS:: Emulation Rate  70.64 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4482
+STATS:: Emulation Rate  66.69 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4482
+STATS:: Emulation Rate  70.94 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4482
+STATS:: Emulation Rate  71.57 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 8
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    4482
+STATS:: Emulation Rate  69.11 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 7
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5553
+STATS:: Emulation Rate  67.43 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5034
+STATS:: Emulation Rate  71.36 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5034
+STATS:: Emulation Rate  71.57 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5034
+STATS:: Emulation Rate  69.19 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5034
+STATS:: Emulation Rate  71.87 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 9
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5034
+STATS:: Emulation Rate  73.96 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5584
+STATS:: Emulation Rate  74.08 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5584
+STATS:: Emulation Rate  70.27 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5584
+STATS:: Emulation Rate  73.13 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5584
+STATS:: Emulation Rate  73.15 kinst/sec
+ARG seed 0
+ARG numthreads 32
+ARG program test-and-test-and-set.s
+ARG interrupt frequency 10
+ARG interrupt randomness False
+ARG procsched 
+ARG argv 
+ARG load address 1000
+ARG memsize 128
+ARG memtrace count,mutex
+ARG regtrace ax
+ARG cctrace False
+ARG printstats True
+ARG verbose False
+STATS:: Instructions    5584
+STATS:: Emulation Rate  73.01 kinst/sec

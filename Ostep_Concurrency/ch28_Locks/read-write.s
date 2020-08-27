@@ -8,6 +8,9 @@
 .var buf
 .var mutex
 
+.var buf_max
+.var condition
+
 .main 
 .top
 test	$0, %cx

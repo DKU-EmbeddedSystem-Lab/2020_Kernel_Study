@@ -21,10 +21,13 @@ jne	.consumer	# if not, try again
 
 # Critical Section
 mov 	buf, %ax
+test	$0, %ax		#check empty 
+je	.consumer_release	#if empty, 
 sub	$1, %ax
 mov 	%ax, buf
 
 #release lock
+.consumer_release
 mov	$0, mutex
 
 #see if we're still looping
@@ -42,10 +45,13 @@ jne	.producer	#if lock is not free : try again
 
 #Critical Section
 mov 	buf, %ax
+test	$1, %ax		#check full
+je	.producer_release	#if full
 add 	$1, %ax
 mov 	%ax, buf
 
 #release lock
+.producer_release
 mov	$0, mutex
  
 #see if we're still looping
