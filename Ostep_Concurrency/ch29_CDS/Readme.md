@@ -4,7 +4,7 @@ ch29 : Lock-Based Data Structure (Ostep v1.1)
 >	>2. Concurrent Linked-List
 >	>3. Concurrent Queues
 >	>4. Concurrent Hash Table
->	> Ostep : http://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks-usage.pdf
+>	>Ostep : http://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks-usage.pdf
 
 >	Homework(Code)
 >	>	In this homework, you'll gain some experience with writing concurrent code and
