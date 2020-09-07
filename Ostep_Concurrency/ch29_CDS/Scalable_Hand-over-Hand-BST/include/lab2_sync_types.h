@@ -28,9 +28,7 @@
  */
 typedef struct lab2_node {
 
-    pthread_mutex_t mutex;    
-    //pthread_mutex_t mutex_left;
-    //pthread_mutex_t mutex_right;
+    struct lab2_tree_mutex *my_mutex;    
     struct lab2_node *left;
     struct lab2_node *right;
     //struct lab2_node *parent;
@@ -48,6 +46,12 @@ typedef struct lab2_tree {
     struct lab2_node *root;
 } lab2_tree;
 
+typedef struct lab2_tree_mutex{
+	//...
+	int mutex_id ;
+	pthread_mutext_t mutex ;
+
+}
 /* 
  * lab2_bst_test.c related structure.  
  */

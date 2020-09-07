@@ -210,7 +210,20 @@ void bst_test(int num_threads,int node_count){
         lab2_node* node = lab2_node_create(data[i]);
         lab2_node_insert(tree, node);
     }
+    //	
+    // tree made here
+    //
+    
+	
 
+    //here is my simulation
+    for(i=0; i< )
+
+
+
+    //
+    // tree remove
+    // 
     gettimeofday(&tv_start, NULL);
     for(i=0 ; i < node_count ; i++){
         lab2_node_remove(tree,data[i]);
@@ -219,6 +232,10 @@ void bst_test(int num_threads,int node_count){
     gettimeofday(&tv_end, NULL);
     exe_time = get_timeval(&tv_start, &tv_end);
     print_result(tree ,num_threads, node_count, LAB2_TYPE_SINGLE, LAB2_OPTYPE_DELETE,exe_time);
+    //
+    // tree removed
+    //
+
     lab2_tree_delete(tree);
     
     /* 
