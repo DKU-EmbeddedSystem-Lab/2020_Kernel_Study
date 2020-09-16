@@ -35,13 +35,11 @@ void barrier_init(barrier_t *b, int num_threads) {
 void barrier(barrier_t *b) {
     // barrier code goes here
     // barrier guarantees that all threads will execute P1 before any one thread executes P2
-	//WHY? do we need 2 semaphores???? - empty&full .... ?	
-		Sem_wait(&(b->s1));
-		b->b_count++;
-		if(b->num_threads == b->b_count)
-			Sem_post((&b->all_thread_arrived));
-
-		Sem_post(&(b->s1));
+	Sem_wait(&(b->s1));
+	b->b_count++;
+	if(b->num_threads == b->b_count)
+		Sem_post((&b->all_thread_arrived));
+	Sem_post(&(b->s1));
 
 	Sem_wait(&(b->all_thread_arrived));
 	Sem_post(&(b->all_thread_arrived));

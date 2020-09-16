@@ -8,8 +8,7 @@ sem_t s;
 void *child(void *arg) {
     printf("child\n");
     sleep(1);
-    // use semaphore here
-    Sem_post(&s);
+    Sem_post(&s);	//Use Semaphore here
     return NULL;
 }
 
@@ -19,9 +18,8 @@ int main(int argc, char *argv[]) {
     // init semaphore here
     Sem_init(&s,0);
     Pthread_create(&p, NULL, child, NULL);
-    // use semaphore here
     // join(&p) == wait(); ==Sem_wait(s);
-    Sem_wait(&s);
+    Sem_wait(&s); 	//Use Semaphore here
     printf("parent: end\n");
     return 0;
 }

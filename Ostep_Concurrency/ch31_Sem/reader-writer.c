@@ -25,9 +25,8 @@ void rwlock_acquire_readlock(rwlock_t *rw) {
 	rw->readers++;
 	if(rw->readers==1)
 		Sem_wait(&(rw->writelock));
-	sleep(1);
 	Sem_post(&(rw->lock));
-	//sleep(1); //sleep here to know reader will begin
+	sleep(1);//sleep here to know reader will begin
 }
 
 void rwlock_release_readlock(rwlock_t *rw) {
@@ -42,7 +41,7 @@ void rwlock_acquire_writelock(rwlock_t *rw) {
 	//Sem_wait(&(rw->lock)); //<<- 없으면 어케 되는걸까?
 	Sem_wait(&(rw->writelock));
 	//Sem_post(&(rw->lock));
-	sleep(1); //sleep here to know writer will begin
+	//sleep here to know writer will begin
 }
 
 void rwlock_release_writelock(rwlock_t *rw) {

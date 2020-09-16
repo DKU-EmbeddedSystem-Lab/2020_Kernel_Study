@@ -73,7 +73,8 @@ void *reader(void *arg) {
     int i;
     for (i = 0; i < loops; i++) {
 	rwlock_acquire_readlock(&lock);
-	printf("read %d\n", value);
+	printf("read %d\n", value);fflush(NULL);
+	for(int i =0; i < 10000; i++);
 	rwlock_release_readlock(&lock);
     }
     return NULL;
@@ -84,7 +85,8 @@ void *writer(void *arg) {
     for (i = 0; i < loops; i++) {
 	rwlock_acquire_writelock(&lock);
 	value++;
-	printf("write %d\n", value);
+	printf("write %d\n", value);fflush(NULL);
+	for(int i =0; i < 10000; i++);
 	rwlock_release_writelock(&lock);
     }
     return NULL;
